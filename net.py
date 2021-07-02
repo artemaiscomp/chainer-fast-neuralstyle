@@ -41,9 +41,9 @@ class FastStyleNet(chainer.Chain):
             r3=ResidualBlock(128, 128),
             r4=ResidualBlock(128, 128),
             r5=ResidualBlock(128, 128),
-            d1=L.Deconvolution2D(128, 64, 4, stride=2, pad=1),
-            d2=L.Deconvolution2D(64, 32, 4, stride=2, pad=1),
-            d3=L.Deconvolution2D(32, 3, 9, stride=1, pad=4),
+            d1=L.Convolution2D(128, 64, 3, stride=1, pad=1),
+            d2=L.Convolution2D(64, 32, 3, stride=1, pad=1),
+            d3=L.Convolution2D(32, 3, 9, stride=1, pad=4),
             b1=L.BatchNormalization(32),
             b2=L.BatchNormalization(64),
             b3=L.BatchNormalization(128),
@@ -52,16 +52,18 @@ class FastStyleNet(chainer.Chain):
         )
 
     def __call__(self, x, test=False):
-        h = self.b1(F.elu(self.c1(x)), test=test)
-        h = self.b2(F.elu(self.c2(h)), test=test)
-        h = self.b3(F.elu(self.c3(h)), test=test)
+        h = F.relu(self.b1(self.c1(x), test=test))
+        h = F.relu(self.b2(self.c2(h), test=test))
+        h = F.relu(self.b3(self.c3(h), test=test))
         h = self.r1(h, test=test)
         h = self.r2(h, test=test)
         h = self.r3(h, test=test)
         h = self.r4(h, test=test)
         h = self.r5(h, test=test)
-        h = self.b4(F.elu(self.d1(h)), test=test)
-        h = self.b5(F.elu(self.d2(h)), test=test)
+        h = F.unpooling_2d(h, 2, 2, cover_all=test)
+        h = F.relu(self.b4(self.d1(h), test=test))
+        h = F.unpooling_2d(h, 2, 2, cover_all=test)
+        h = F.relu(self.b5(self.d2(h), test=test))
         y = self.d3(h)
         return (F.tanh(y)+1)*127.5
 

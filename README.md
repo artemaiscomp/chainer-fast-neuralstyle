@@ -1,15 +1,19 @@
 # Chainer implementation of "Perceptual Losses for Real-Time Style Transfer and Super-Resolution"
 Fast artistic style transfer by using feed forward network.
 
+<<<<<<< HEAD
 **checkout [resize-conv](https://github.com/yusuketomoto/chainer-fast-neuralstyle/tree/resize-conv) branch which provides better result.**
 
 <img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/tubingen.jpg" height="200px">
+=======
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/tubingen.jpg" height="200px">
+>>>>>>> resize-conv
 
-<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/style_1.png" height="200px">
-<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/output_1.jpg" height="200px">
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/style_1.png" height="200px">
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/output_1.jpg" height="200px">
 
-<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/style_2.png" height="200px">
-<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/output_2.jpg" height="200px">
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/style_2.png" height="200px">
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/output_2.jpg" height="200px">
 
 - input image size: 1024x768
 - process time(CPU): 17.78sec (Core i7-5930K)
@@ -54,6 +58,7 @@ python generate.py sample_images/tubingen.jpg -m models/seurat.model -o sample_i
 #### Transfer only style but not color (**--keep_colors option**)
 `python generate.py <input_image_path> -m <model_path> -o <output_image_path> -g <use_gpu ? gpu_id : -1> --keep_colors`
 
+<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/output_1.jpg" height="200px">
 <img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/master/sample_images/output_keep_colors_1.jpg" height="200px">
 
@@ -63,14 +68,25 @@ python generate.py sample_images/tubingen.jpg -m models/seurat.model -o sample_i
 
 ## A collection of pre-trained models
 Fashizzle Dizzle created pre-trained models collection repository, [chainer-fast-neuralstyle-models](https://github.com/gafr/chainer-fast-neuralstyle-models). You can find a variety of models.
+=======
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/output_1.jpg" height="200px">
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/output_keep_colors_1.jpg" height="200px">
+
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/output_2.jpg" height="200px">
+<img src="https://raw.githubusercontent.com/yusuketomoto/chainer-fast-neuralstyle/resize-conv/sample_images/output_keep_colors_2.jpg" height="200px">
+
+>>>>>>> resize-conv
 
 ## Difference from paper
 - Convolution kernel size 4 instead of 3.
 - Training with batchsize(n>=2) causes unstable result.
 
 ## No Backward Compatibility
-##### Jul. 19, 2016
-This version is not compatible with the previous versions. You can't use models trained by the previous implementation. Sorry for the inconvenience!
+**Dec. 14, 2016**
+
+**Jul. 19, 2016**
+
+Each version above breaks backward compatibility. You can't use models trained by the previous implementation. Sorry for the inconvenience!
 
 ## License
 MIT
@@ -82,3 +98,4 @@ Codes written in this repository based on following nice works, thanks to the au
 
 - [chainer-gogh](https://github.com/mattya/chainer-gogh.git) Chainer implementation of neural-style. I heavily referenced it.
 - [chainer-cifar10](https://github.com/mitmul/chainer-cifar10) Residual block implementation is referred.
+- [gan-resize-convolution](https://github.com/hvy/gan-resize-convolution) resize-convolution
