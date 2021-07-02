@@ -1,3 +1,11 @@
+## "Updated" Requirements
+```
+$ conda install -c conda-forge cupy cudatoolkit=10.2
+$ conda install -c conda-forge pillow chainer
+$ conda install -c conda-forge nccl
+```
+
+Based on https://github.com/yusuketomoto/chainer-fast-neuralstyle
 # Chainer implementation of "Perceptual Losses for Real-Time Style Transfer and Super-Resolution"
 Fast artistic style transfer by using feed forward network.
 

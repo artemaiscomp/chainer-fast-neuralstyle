@@ -35,7 +35,8 @@ xp = np if args.gpu < 0 else cuda.cupy
 
 start = time.time()
 original = Image.open(args.input).convert('RGB')
-image = np.asarray(original, dtype=np.float32).transpose(2, 0, 1)
+#image = np.asarray(original, dtype=np.float32).transpose(2, 0, 1)
+image = np.asarray(original).astype(np.float32).transpose(2, 0, 1)
 image = image.reshape((1,) + image.shape)
 if args.padding > 0:
 	image = np.pad(image, [[0, 0], [0, 0], [args.padding, args.padding], [args.padding, args.padding]], 'symmetric')
