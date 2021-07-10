@@ -56,11 +56,15 @@ This repo has pretrained models as an example.
 
 - example:
 ```
-python generate.py sample_images/tubingen.jpg -m models/composition.model -o sample_images/output.jpg
+python generate.py sample_images/tubingen.jpg unique -m models/composition.model -o sample_images/output.jpg
 ```
 or
 ```
-python generate.py sample_images/tubingen.jpg -m models/seurat.model -o sample_images/output.jpg
+python generate.py '../frames/*.jpg' folder -m models/composition.model -o ../style -g 0
+```
+or
+```
+python generate.py sample_images/tubingen.jpg unique -m models/seurat.model -o sample_images/output.jpg
 ```
 
 #### Transfer only style but not color (**--keep_colors option**)
