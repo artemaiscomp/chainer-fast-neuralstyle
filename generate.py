@@ -5,6 +5,7 @@ from PIL import Image, ImageFilter
 import time
 
 import glob
+import os
 
 import chainer
 from chainer import cuda, Variable, serializers
@@ -85,6 +86,8 @@ if __name__ == '__main__':
     parser.set_defaults(keep_colors=False)
     args = parser.parse_args()
 
+    split_char = '\\' if os.name == 'nt' else '/'
+
     model, xp = get_model_and_backend(args.model, args.gpu)
 
     if args.type == 'unique':
@@ -94,5 +97,5 @@ if __name__ == '__main__':
         fnames = glob.glob(args.input)
         for fname in fnames:
             med = apply_style_in_image(fname, args)
-            med.save(args.out + '/' + fname.split('/')[-1])
+            med.save(args.out + split_char + fname.split(split_char)[-1])
         
